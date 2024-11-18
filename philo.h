@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/13 11:15:02 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:47:02 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,31 @@ typedef struct s_philo
 	pthread_t			thread_id;
 	t_fork				*l_fork;
 	t_fork				*r_fork;
-	t_mutex				ph_mutex;
 	t_data				*data;
+	time_t				start_time;
+	time_t				last_meal;
+	int					eating;
 }						t_philo;
 
 typedef struct s_data
 {
 	long				philo_nbr;
-	long				time_to_die;
-	long				time_to_eat;
-	long				time_to_sleep;
+	time_t				time_to_die;
+	time_t				time_to_eat;
+	time_t				time_to_sleep;
 	long				total_meals;
-	t_mutex				data_mutex;
 	t_philo				*philos;
 	t_fork				*forks;
+	int					dead_flag;
+	t_mutex				dead_lock;
+	t_mutex				meal_lock;
+	t_mutex				write_lock;
 }						t_data;
 
 int						error_exit(char *str);
 int						print_error(t_data *data);
 int						parse_input(t_data *data, char **av);
 int						init_data(t_data *data);
+size_t					get_current_time(void);
 
 #endif

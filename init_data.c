@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:53:35 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/13 10:26:16 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:47:22 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,11 @@ static int	init_philos(t_data *data)
 		philo = data->philos + i;
 		philo->ph_id = i + 1;
 		philo->eaten_count = 0;
-		if (pthread_mutex_init(&philo->ph_mutex, NULL))
-			return (ERROR_FAILURE);
+		philo->eating = 1;
 		philo->data = data;
 		assign_forks(philo, data->forks, i);
+		philo->start_time = get_current_time();
+		philo->last_meal = get_current_time();
 		i++;
 	}
 	return (0);
@@ -63,13 +64,18 @@ static int	init_philos(t_data *data)
 
 int	init_data(t_data *data)
 {
+	if (pthread_mutex_init(&data->write_lock, NULL))
+		return (ERROR_FAILURE);
+	if (pthread_mutex_init(&data->dead_lock, NULL))
+		return (ERROR_FAILURE);
+	if (pthread_mutex_init(&data->meal_lock, NULL))
+		return (ERROR_FAILURE);
+	data->dead_flag = 0;
 	data->forks = malloc(sizeof(t_fork) * data->philo_nbr);
 	if (!data->forks)
 		return (ERROR_FAILURE);
 	data->philos = malloc(sizeof(t_philo) * data->philo_nbr);
 	if (!data->philos)
-		return (ERROR_FAILURE);
-	if (pthread_mutex_init(&data->data_mutex, NULL))
 		return (ERROR_FAILURE);
 	if (init_forks(data))
 		return (ERROR_FAILURE);

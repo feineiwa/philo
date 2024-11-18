@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:51:57 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/13 11:29:02 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:24:53 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	print_error(t_data *data)
 		|| data->time_to_sleep < 60000)
 		return (error_exit("the minumum of time is 60"));
 	if (!data->philo_nbr || !data->time_to_die || !data->time_to_eat
-		|| !data->time_to_sleep || !data->total_meals)
+		|| !data->time_to_sleep)
 		return (error_exit("Error\nThe number should not be 0"));
 	return (0);
 }
