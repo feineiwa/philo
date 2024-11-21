@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/18 16:47:02 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/21 09:00:10 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,33 @@ typedef struct s_data	t_data;
 
 typedef struct s_fork
 {
-	long				fork_id;
+	int					fork_id;
 	t_mutex				fork_mutex;
 }						t_fork;
 
 typedef struct s_philo
 {
-	long				ph_id;
-	long				eaten_count;
+	int					ph_id;
+	int					eaten_count;
 	pthread_t			thread_id;
 	t_fork				*l_fork;
 	t_fork				*r_fork;
 	t_data				*data;
 	time_t				start_time;
 	time_t				last_meal;
-	int					eating;
+	t_bool				eating;
+	t_bool				dead_flag;
 }						t_philo;
 
 typedef struct s_data
 {
-	long				philo_nbr;
+	int					philo_nbr;
 	time_t				time_to_die;
 	time_t				time_to_eat;
 	time_t				time_to_sleep;
-	long				total_meals;
+	int					total_meals;
 	t_philo				*philos;
 	t_fork				*forks;
-	int					dead_flag;
 	t_mutex				dead_lock;
 	t_mutex				meal_lock;
 	t_mutex				write_lock;

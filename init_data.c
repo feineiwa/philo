@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:53:35 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/18 16:47:22 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/21 09:00:30 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ static int	init_philos(t_data *data)
 		philo = data->philos + i;
 		philo->ph_id = i + 1;
 		philo->eaten_count = 0;
-		philo->eating = 1;
+		philo->eating = FALSE;
 		philo->data = data;
+		philo->dead_flag = FALSE;
 		assign_forks(philo, data->forks, i);
 		philo->start_time = get_current_time();
 		philo->last_meal = get_current_time();
@@ -70,7 +71,6 @@ int	init_data(t_data *data)
 		return (ERROR_FAILURE);
 	if (pthread_mutex_init(&data->meal_lock, NULL))
 		return (ERROR_FAILURE);
-	data->dead_flag = 0;
 	data->forks = malloc(sizeof(t_fork) * data->philo_nbr);
 	if (!data->forks)
 		return (ERROR_FAILURE);

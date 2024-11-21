@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:57:19 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/13 11:20:24 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/21 09:29:51 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static long	ft_atol(char *str)
 
 int	parse_input(t_data *data, char **av)
 {
-	data->philo_nbr = ft_atol(av[1]);
+	data->philo_nbr = (int)ft_atol(av[1]);
 	if (data->philo_nbr > PHILO_MAX)
 		return (error_exit("Error\nThe philo number should be lower than 200"));
-	data->time_to_die = ft_atol(av[2]) * 1000;
-	data->time_to_eat = ft_atol(av[3]) * 1000;
-	data->time_to_sleep = ft_atol(av[4]) * 1000;
+	data->time_to_die = (int)ft_atol(av[2]);
+	data->time_to_eat = (int)ft_atol(av[3]);
+	data->time_to_sleep = (int)ft_atol(av[4]);
 	if (av[5])
-		data->total_meals = ft_atol(av[5]);
+		data->total_meals = (int)ft_atol(av[5]);
 	else
 		data->total_meals = -1;
 	if (print_error(data))
