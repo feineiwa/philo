@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:49:37 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/21 14:02:53 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:12:25 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_bool	check_if_all_ate(t_philo *philos)
 	int	i;
 	int	finished_eating;
 
+	finished_eating = 0;
 	i = 0;
 	finished_eating = 0;
 	if (philos->data->time_to_eat == -1)
@@ -146,7 +147,7 @@ t_bool	check_if_dead(t_philo *philos)
 	{
 		if (philosopher_dead(&philos[i], philos[i].data->time_to_die))
 		{
-			print_message("is died", &philos[i], philos[i].ph_id);
+			print_message("died", &philos[i], philos[i].ph_id);
 			pthread_mutex_lock(&philos->data->dead_lock);
 			philos->dead_flag = TRUE;
 			pthread_mutex_unlock(&philos->data->dead_lock);
@@ -164,7 +165,7 @@ void	*ft_monitor(void *data)
 	philos = (t_philo *)data;
 	while (1)
 		if (check_if_dead(philos) == TRUE || check_if_all_ate(philos) == TRUE)
-			break ;
+			exit(0);
 	return (data);
 }
 
