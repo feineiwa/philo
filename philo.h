@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/21 09:00:10 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:05:18 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ int						print_error(t_data *data);
 int						parse_input(t_data *data, char **av);
 int						init_data(t_data *data);
 size_t					get_current_time(void);
+void					*ft_monitor(void *param);
+void					print_status(char *str, t_philo *philo, int id);
 
 #endif

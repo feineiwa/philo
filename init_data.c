@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:53:35 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/21 09:00:30 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:08:32 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static int	init_philos(t_data *data)
 		philo = data->philos + i;
 		philo->ph_id = i + 1;
 		philo->eaten_count = 0;
-		philo->eating = FALSE;
 		philo->data = data;
-		philo->dead_flag = FALSE;
 		assign_forks(philo, data->forks, i);
 		philo->start_time = get_current_time();
 		philo->last_meal = get_current_time();
+		philo->eating = FALSE;
+		philo->dead_flag = FALSE;
 		i++;
 	}
 	return (0);
