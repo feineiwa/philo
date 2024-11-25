@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:13:26 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/24 16:11:01 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:31:07 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	print_status(char *str, t_philo *philo, int id)
 
 	pthread_mutex_lock(&philo->data->write_lock);
 	time = get_current_time() - philo->start_time;
-	printf("%zu %d %s\n", time, id, str);
+	if (!is_dead(philo))
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(&philo->data->write_lock);
 }
 
@@ -43,7 +44,7 @@ static t_bool	check_if_dead(t_philo *philos)
 		{
 			print_status("died", &philos[i], philos[i].ph_id);
 			pthread_mutex_lock(&philos->data->dead_lock);
-			philos->dead_flag = TRUE;
+			philos->data->dead_flag = TRUE;
 			pthread_mutex_unlock(&philos->data->dead_lock);
 			return (TRUE);
 		}
@@ -64,7 +65,7 @@ static t_bool	check_all_full(t_philo *philos)
 	while (i < philos->data->philo_nbr)
 	{
 		pthread_mutex_lock(&philos[i].data->meal_lock);
-		if (philos[i].eaten_count >= philos[i].data->total_meals)
+		if (philos[i].eaten_count >= philos->data->total_meals)
 			finished_eating++;
 		pthread_mutex_unlock(&philos[i].data->meal_lock);
 		i++;
@@ -72,7 +73,7 @@ static t_bool	check_all_full(t_philo *philos)
 	if (finished_eating == philos->data->philo_nbr)
 	{
 		pthread_mutex_lock(&philos->data->dead_lock);
-		philos->dead_flag = TRUE;
+		philos->data->dead_flag = TRUE;
 		pthread_mutex_unlock(&philos->data->dead_lock);
 		return (TRUE);
 	}
@@ -86,6 +87,6 @@ void	*ft_monitor(void *param)
 	philos = (t_philo *)param;
 	while (1)
 		if (check_if_dead(philos) == TRUE || check_all_full(philos) == TRUE)
-			exit(0) ;
+			break ;
 	return (param);
 }

@@ -2,7 +2,7 @@ NAME = philo
 
 INC = philo.h
 
-SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c
+SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c dinner.c
 
 CFLAG = cc -Wall -Wextra -Werror -I
 

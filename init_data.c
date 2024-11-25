@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:53:35 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/24 14:08:32 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:25:27 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static void	assign_forks(t_philo *philo, t_fork *forks, int i)
 {
 	int	philo_nbr;
 
-	philo_nbr = (int)philo->data->philo_nbr;
-	philo->l_fork = &forks[i];
+	philo_nbr = philo->data->philo_nbr;
 	philo->r_fork = &forks[(i + 1) % philo_nbr];
+	philo->l_fork = &forks[i];
 	if (philo->ph_id % 2)
 	{
 		philo->r_fork = &forks[i];
@@ -57,7 +57,6 @@ static int	init_philos(t_data *data)
 		philo->start_time = get_current_time();
 		philo->last_meal = get_current_time();
 		philo->eating = FALSE;
-		philo->dead_flag = FALSE;
 		i++;
 	}
 	return (0);
@@ -81,5 +80,6 @@ int	init_data(t_data *data)
 		return (ERROR_FAILURE);
 	if (init_philos(data))
 		return (ERROR_FAILURE);
+	data->dead_flag = FALSE;
 	return (0);
 }
