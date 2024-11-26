@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:05:40 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/25 18:22:37 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:22:00 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_usleep(size_t milliseconds)
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
-		usleep(100);
+		usleep(500);
 	return (0);
 }

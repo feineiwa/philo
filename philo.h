@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/25 17:58:28 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/26 12:18:01 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # define ERROR_FAILURE 1
 # define PHILO_MAX 200
 
-# define RESET		"\033[0m" 
 # define RED		"\033[1;31m"
 # define GREEN		"\033[1;32m"
 # define YELLOW		"\033[1;33m"

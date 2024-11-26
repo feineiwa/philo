@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:51:57 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/21 09:30:50 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:35:26 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	print_error(t_data *data)
 		|| data->time_to_eat == -5 || data->time_to_sleep == -5
 		|| data->total_meals == -5)
 		return (error_exit("Error\nThe number is exceeded the int limit max"));
-	if (data->time_to_die < 60 || data->time_to_eat < 60
-		|| data->time_to_sleep < 60)
-		return (error_exit("the minumum of time is 60"));
+	// if (data->time_to_die < 60 || data->time_to_eat < 60
+	// 	|| data->time_to_sleep < 60)
+	// 	return (error_exit("the minumum of time is 60"));
 	if (!data->philo_nbr || !data->time_to_die || !data->time_to_eat
 		|| !data->time_to_sleep)
 		return (error_exit("Error\nThe number should not be 0"));

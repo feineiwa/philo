@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:53:46 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/25 18:26:36 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:21:55 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,13 @@ void	*dinner_simulation(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	// if (philo->ph_id % 2 == 0)
-	// 	ft_usleep(1);
+	if (philo->ph_id % 2 == 0)
+		ft_usleep(1);
 	while (!is_dead(philo))
 	{
 		eat(philo);
 		snooze(philo);
 		think(philo);
-		usleep(500);
 	}
 	return (param);
 }
