@@ -15,7 +15,7 @@
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->r_fork->fork_mutex);
-	print_status("has taken a fork", philo, philo->ph_id);
+	print_status(TAKE_FORK, philo, philo->ph_id);
 	if (philo->data->philo_nbr == 1)
 	{
 		ft_usleep(philo->data->time_to_die);
@@ -23,9 +23,9 @@ void	eat(t_philo *philo)
 		return ;
 	}
 	pthread_mutex_lock(&philo->l_fork->fork_mutex);
-	print_status("has taken a fork", philo, philo->ph_id);
+	print_status(TAKE_FORK, philo, philo->ph_id);
 	philo->eating = TRUE;
-	print_status("is eating", philo, philo->ph_id);
+	print_status(EATING, philo, philo->ph_id);
 	pthread_mutex_lock(&philo->data->meal_lock);
 	philo->eaten_count++;
 	philo->last_meal = (time_t)get_current_time();
@@ -38,12 +38,12 @@ void	eat(t_philo *philo)
 
 void	think(t_philo *philo)
 {
-	print_status("is thinking", philo, philo->ph_id);
+	print_status(THINKING, philo, philo->ph_id);
 }
 
 void	snooze(t_philo *philo)
 {
-	print_status("is sleeping", philo, philo->ph_id);
+	print_status(SLEEPING, philo, philo->ph_id);
 	ft_usleep(philo->data->time_to_sleep);
 }
 
@@ -52,13 +52,14 @@ void	*dinner_simulation(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	if (philo->ph_id % 2 == 0)
-		ft_usleep(1);
+	// if (philo->ph_id % 2 == 0)
+	// 	ft_usleep(1);
 	while (!is_dead(philo))
 	{
 		eat(philo);
 		snooze(philo);
 		think(philo);
+		usleep(500);
 	}
 	return (param);
 }

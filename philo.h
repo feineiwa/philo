@@ -23,11 +23,28 @@
 # define ERROR_FAILURE 1
 # define PHILO_MAX 200
 
+# define RESET		"\033[0m" 
+# define RED		"\033[1;31m"
+# define GREEN		"\033[1;32m"
+# define YELLOW		"\033[1;33m"
+# define MAGENTA	"\033[1;35m"
+# define CYAN		"\033[1;36m"
+# define WHITE		"\033[1;37m"
+
 typedef enum e_bool
 {
 	FALSE,
 	TRUE,
 }						t_bool;
+
+typedef enum e_status
+{
+	DIED,
+	EATING,
+	SLEEPING,
+	THINKING,
+	TAKE_FORK,
+}			t_status;
 
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_data	t_data;
@@ -72,7 +89,7 @@ int						parse_input(t_data *data, char **av);
 int						init_data(t_data *data);
 
 void					*ft_monitor(void *param);
-void					print_status(char *str, t_philo *philo, int id);
+void					print_status(t_status status, t_philo *philo, int id);
 
 int						dinner_start(t_data *data);
 

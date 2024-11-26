@@ -12,14 +12,25 @@
 
 #include "philo.h"
 
-void	print_status(char *str, t_philo *philo, int id)
+void	print_status(t_status status, t_philo *philo, int id)
 {
 	size_t	time;
 
 	pthread_mutex_lock(&philo->data->write_lock);
 	time = get_current_time() - philo->start_time;
 	if (!is_dead(philo))
-		printf("%zu %d %s\n", time, id, str);
+	{
+		if (status == DIED)
+			printf(RED"%zu %d %s\n", time, id, "died");
+		else if (status == THINKING)
+			printf(YELLOW"%zu %d %s\n", time, id, "is thinking");
+		else if (status == EATING)
+			printf(GREEN"%zu %d %s\n", time, id, "is eating");
+		else if (status == TAKE_FORK)
+			printf(CYAN"%zu %d %s\n", time, id, "has taken a fork");
+		else if (status == SLEEPING)
+			printf(MAGENTA"%zu %d %s\n", time, id, "is sleeping");
+	}
 	pthread_mutex_unlock(&philo->data->write_lock);
 }
 
@@ -42,7 +53,7 @@ static t_bool	check_if_dead(t_philo *philos)
 	{
 		if (philosopher_dead(&philos[i], philos[i].data->time_to_die))
 		{
-			print_status("died", &philos[i], philos[i].ph_id);
+			print_status(DIED, &philos[i], philos[i].ph_id);
 			pthread_mutex_lock(&philos->data->dead_lock);
 			philos->data->dead_flag = TRUE;
 			pthread_mutex_unlock(&philos->data->dead_lock);
