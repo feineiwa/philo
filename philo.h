@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/26 12:18:01 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:17:52 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 # define ERROR_FAILURE 1
 # define PHILO_MAX 200
 
-# define RED		"\033[1;31m"
-# define GREEN		"\033[1;32m"
-# define YELLOW		"\033[1;33m"
-# define MAGENTA	"\033[1;35m"
-# define CYAN		"\033[1;36m"
-# define WHITE		"\033[1;37m"
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define MAGENTA "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define RESET "\033[1;0m"
 
 typedef enum e_bool
 {
@@ -43,7 +43,7 @@ typedef enum e_status
 	SLEEPING,
 	THINKING,
 	TAKE_FORK,
-}			t_status;
+}						t_status;
 
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_data	t_data;
@@ -93,7 +93,8 @@ void					print_status(t_status status, t_philo *philo, int id);
 int						dinner_start(t_data *data);
 
 t_bool					is_dead(t_philo *philo);
-size_t					get_current_time(void);
+size_t					get_current_time();
 int						ft_usleep(size_t milliseconds);
+int						destroy_all(t_data *data);
 
 #endif

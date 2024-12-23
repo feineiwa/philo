@@ -2,9 +2,9 @@ NAME = philo
 
 INC = philo.h
 
-SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c dinner.c
+SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c dinner.c destroy.c
 
-CFLAG = cc -Wall -Wextra -Werror -I
+CFLAG = gcc -Wall -Wextra -Werror -I -fsanitize=thread
 
 all: $(NAME)
 

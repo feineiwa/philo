@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/13 08:49:37 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/17 13:57:19 by frahenin         ###   ########.fr       */
+/*   Created: 2024/12/16 10:34:58 by frahenin          #+#    #+#             */
+/*   Updated: 2024/12/17 13:57:57 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	destroy_all(t_data *data)
 {
-	t_data data;
-
-	if (ac != 5 && ac != 6)
-		return (error_exit("Error:\nError number of argument"));
-	if (parse_input(&data, av) == ERROR_FAILURE)
-		return (ERROR_FAILURE);
-	if (init_data(&data) == ERROR_FAILURE)
-		return (ERROR_FAILURE);
-	if (dinner_start(&data))
-		return (ERROR_FAILURE);
-	destroy_all(&data);
+	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->dead_lock);
+	pthread_mutex_destroy(&data->meal_lock);
+	free(data->forks);
+	free(data->philos);
 	return (0);
 }
