@@ -2,7 +2,7 @@ NAME = philo
 
 INC = philo.h
 
-SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c dinner.c destroy.c
+SRC = philo.c error_function.c parse_input.c init_data.c monitor.c utils.c routine.c destroy.c
 
 CFLAG = gcc -Wall -Wextra -Werror -I -fsanitize=thread
 
