@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:13:26 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 13:32:33 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:45:48 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static t_bool	check_if_dead(t_philo *philos)
 	i = 0;
 	while (i < philos->data->philo_nbr)
 	{
-		current_time = get_current_time(philos->data);
+		current_time = get_current_time();
 		pthread_mutex_lock(&philos[i].data->meal_lock);
 		if ((current_time - philos[i].last_meal >= philos->data->time_to_die)
 			&& philos[i].eating == FALSE)

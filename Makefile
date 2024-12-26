@@ -1,12 +1,10 @@
 NAME = philo
 
-INC = ./inc/
+INC = -I./inc/
 
 CC = gcc
 
-CFLAG = -Wall -Wextra -Werror -I -fsanitize=thread
-
-all: $(NAME)
+CFLAGS = -Wall -Wextra -Werror
 
 SRC_DIR = src/
 
@@ -19,9 +17,23 @@ OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
 
 all : $(NAME)
 
-$(NAME) : $(OB)
+$(NAME) : $(OBJS)
+		@$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+		@echo "To lanch:\n\t./philo <nbr_of_philos> <time_to_die> <time_to_eat> <time_to_sleep>\
+ [number_of_times_each_philosopher_must_eat]"
 
-fclean :
-		rm -rf $(NAME)
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+		@mkdir -p $(dir $@)
+		@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-re : fclean $(NAME)
+clean:
+		@rm -rf $(OBJ_DIR)
+		@echo "The objects have been deleted"
+
+fclean : clean
+		@rm -f $(NAME)
+		@echo "All clean"
+
+re : fclean all
+
+.PHONY: all clean fclean re

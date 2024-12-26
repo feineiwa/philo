@@ -6,19 +6,22 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:49:37 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 13:32:45 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:04:40 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
-void	*dinner_simulation(void *param)
+static void	*dinner_simulation(void *param)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	if (philo->ph_id % 2 == 0)
-		ft_usleep(1);
+	if (philo->data->philo_nbr % 2 == 0)
+	{
+		if (philo->ph_id % 2 == 0)
+			ft_usleep(1, philo);
+	}
 	while (!is_dead(philo))
 	{
 		if (eat(philo))
@@ -27,12 +30,12 @@ void	*dinner_simulation(void *param)
 			break ;
 		if (think(philo))
 			break ;
-		ft_usleep(1);
+		ft_usleep(1, philo);
 	}
 	return (param);
 }
 
-int	dinner_start(t_data *data)
+static int	dinner_start(t_data *data)
 {
 	int			i;
 	pthread_t	observer;
@@ -61,7 +64,7 @@ int	dinner_start(t_data *data)
 
 int	main(int ac, char **av)
 {
-	t_data data;
+	t_data	data;
 
 	if (ac != 5 && ac != 6)
 		return (error_exit("Error:\nError number of argument"));

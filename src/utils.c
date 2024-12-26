@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:05:40 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 13:32:56 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:45:34 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ void	print_status(t_status status, t_philo *philo, int id)
 size_t	get_current_time(void)
 {
 	struct timeval	time;
-	
+
 	if (gettimeofday(&time, NULL) == -1)
-		write (1, "Error gettimeofday\n", 19);
+		write(1, "Error gettimeofday\n", 19);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
 t_bool	is_dead(t_philo *philo)
 {
 	t_bool	dead;
-	
+
 	pthread_mutex_lock(&philo->data->dead_lock);
 	dead = philo->data->dead_flag;
 	pthread_mutex_unlock(&philo->data->dead_lock);
 	return (dead);
 }
 
-int	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds, t_philo *philo)
 {
-	size_t start;
+	size_t	start;
 
 	start = get_current_time();
-	while ((get_current_time() - start) < milliseconds)
+	while (((get_current_time() - start) < milliseconds) && !is_dead(philo))
 		usleep(500);
 	return (0);
 }

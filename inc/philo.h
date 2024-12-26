@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 13:29:28 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 13:29:43 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_status
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_data	t_data;
 
-typedef	long long t_time;
+typedef long long		t_time;
 
 typedef struct s_fork
 {
@@ -96,11 +96,10 @@ int						eat(t_philo *philo);
 int						think(t_philo *philo);
 int						snooze(t_philo *philo);
 
-
 void					print_status(t_status status, t_philo *philo, int id);
 t_bool					is_dead(t_philo *philo);
-size_t					get_current_time();
-int						ft_usleep(size_t milliseconds);
+size_t					get_current_time(void);
+int						ft_usleep(size_t milliseconds, t_philo *philo);
 
 int						destroy_all(t_data *data);
 void					*ft_free(void *ptr);

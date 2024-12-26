@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:57:19 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 13:32:39 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:04:17 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	parse_input(t_data *data, char **av)
 	if (data->philo_nbr > PHILO_MAX)
 		return (error_exit("Error\nThe philo number should be lower than 200"));
 	data->time_to_die = ft_atol(av[2]);
-	data->time_to_eat =	ft_atol(av[3]);
+	data->time_to_eat = ft_atol(av[3]);
 	data->time_to_sleep = ft_atol(av[4]);
 	if (av[5])
 		data->total_meals = ft_atol(av[5]);
