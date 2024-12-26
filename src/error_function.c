@@ -6,11 +6,11 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:51:57 by frahenin          #+#    #+#             */
-/*   Updated: 2024/11/26 17:35:26 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:32:21 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 int	error_exit(char *str)
 {

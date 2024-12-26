@@ -6,11 +6,11 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 10:34:58 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/24 08:13:25 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:32:09 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 void	*ft_free(void *ptr)
 {

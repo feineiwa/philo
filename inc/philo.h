@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/23 15:17:52 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:29:28 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef enum e_status
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_data	t_data;
 
+typedef	long long t_time;
+
 typedef struct s_fork
 {
 	int					fork_id;
@@ -62,17 +64,17 @@ typedef struct s_philo
 	t_fork				*l_fork;
 	t_fork				*r_fork;
 	t_data				*data;
-	time_t				start_time;
-	time_t				last_meal;
-	t_bool				eating;
+	t_time				start_time;
+	t_time				last_meal;
+	t_time				eating;
 }						t_philo;
 
 typedef struct s_data
 {
 	int					philo_nbr;
-	time_t				time_to_die;
-	time_t				time_to_eat;
-	time_t				time_to_sleep;
+	t_time				time_to_die;
+	t_time				time_to_eat;
+	t_time				time_to_sleep;
 	int					total_meals;
 	t_philo				*philos;
 	t_fork				*forks;
@@ -84,17 +86,23 @@ typedef struct s_data
 
 int						error_exit(char *str);
 int						print_error(t_data *data);
+
 int						parse_input(t_data *data, char **av);
+
 int						init_data(t_data *data);
 
 void					*ft_monitor(void *param);
+int						eat(t_philo *philo);
+int						think(t_philo *philo);
+int						snooze(t_philo *philo);
+
+
 void					print_status(t_status status, t_philo *philo, int id);
-
-int						dinner_start(t_data *data);
-
 t_bool					is_dead(t_philo *philo);
 size_t					get_current_time();
 int						ft_usleep(size_t milliseconds);
+
 int						destroy_all(t_data *data);
+void					*ft_free(void *ptr);
 
 #endif

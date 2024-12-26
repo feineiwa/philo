@@ -6,11 +6,11 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:57:19 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/16 10:31:17 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:32:39 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 static int	is_space(char c)
 {

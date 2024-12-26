@@ -6,11 +6,11 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 09:53:35 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/23 18:16:26 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/24 13:32:28 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../inc/philo.h"
 
 static int	init_forks(t_data *data)
 {
@@ -34,11 +34,6 @@ static void	assign_forks(t_philo *philo, t_fork *forks, int i)
 	philo_nbr = philo->data->philo_nbr;
 	philo->r_fork = &forks[(i + 1) % philo_nbr];
 	philo->l_fork = &forks[i];
-	// if (philo->ph_id % 2 == 0)
-	// {
-	// 	philo->l_fork = &forks[(i + 1) % philo_nbr];
-	// 	philo->r_fork = &forks[i];
-	// }
 }
 
 static int	init_philos(t_data *data)
@@ -79,10 +74,10 @@ int	init_data(t_data *data)
 	}
 	data->forks = malloc(sizeof(t_fork) * data->philo_nbr);
 	if (!data->forks)
-		return (5);
+		return (ERROR_FAILURE);
 	data->philos = malloc(sizeof(t_philo) * data->philo_nbr);
 	if (!data->philos)
-		return (free(data->forks), 6);
+		return (ft_free(data->forks), ERROR_FAILURE);
 	if (init_forks(data))
 		return (ERROR_FAILURE);
 	if (init_philos(data))
