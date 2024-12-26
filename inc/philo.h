@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/26 13:29:43 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:15:33 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_philo
 	t_data				*data;
 	t_time				start_time;
 	t_time				last_meal;
-	t_time				eating;
+	t_bool				eating;
 }						t_philo;
 
 typedef struct s_data

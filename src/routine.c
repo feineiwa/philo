@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:53:46 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/26 13:45:38 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:46:33 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int	eat(t_philo *philo)
 		return (1);
 	}
 	take_forks(philo);
-	pthread_mutex_lock(&philo->data->meal_lock);
 	philo->eating = TRUE;
+	pthread_mutex_lock(&philo->data->meal_lock);
 	print_status(EATING, philo, philo->ph_id);
 	philo->last_meal = (time_t)get_current_time();
 	philo->eaten_count++;
