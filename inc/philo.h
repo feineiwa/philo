@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:34:59 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/26 14:15:33 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:46:56 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int						parse_input(t_data *data, char **av);
 int						init_data(t_data *data);
 
 void					*ft_monitor(void *param);
-int						eat(t_philo *philo);
-int						think(t_philo *philo);
-int						snooze(t_philo *philo);
+void					eat(t_philo *philo);
+void					think(t_philo *philo);
+void					snooze(t_philo *philo);
 
 void					print_status(t_status status, t_philo *philo, int id);
 t_bool					is_dead(t_philo *philo);

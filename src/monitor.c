@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 14:13:26 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/26 13:45:48 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:40:23 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	*ft_monitor(void *param)
 	t_philo	*philos;
 
 	philos = (t_philo *)param;
-	while (!is_dead(&philos[0]))
+	while (1)
 	{
 		usleep(1);
 		if (check_all_full(philos) == TRUE || check_if_dead(philos) == TRUE)

@@ -6,7 +6,7 @@
 /*   By: frahenin <frahenin@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 08:49:37 by frahenin          #+#    #+#             */
-/*   Updated: 2024/12/26 14:04:40 by frahenin         ###   ########.fr       */
+/*   Updated: 2024/12/27 17:38:18 by frahenin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,13 @@ static void	*dinner_simulation(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	if (philo->data->philo_nbr % 2 == 0)
-	{
-		if (philo->ph_id % 2 == 0)
-			ft_usleep(1, philo);
-	}
+	if (philo->ph_id % 2 == 0)
+		ft_usleep(1, philo);
 	while (!is_dead(philo))
 	{
-		if (eat(philo))
-			break ;
-		if (snooze(philo))
-			break ;
-		if (think(philo))
-			break ;
-		ft_usleep(1, philo);
+		eat(philo);
+		snooze(philo);
+		think(philo);
 	}
 	return (param);
 }
@@ -40,8 +33,6 @@ static int	dinner_start(t_data *data)
 	int			i;
 	pthread_t	observer;
 
-	if (pthread_create(&observer, NULL, &ft_monitor, data->philos))
-		return (ERROR_FAILURE);
 	i = 0;
 	while (i < data->philo_nbr)
 	{
@@ -50,6 +41,8 @@ static int	dinner_start(t_data *data)
 			return (ERROR_FAILURE);
 		i++;
 	}
+	if (pthread_create(&observer, NULL, &ft_monitor, data->philos))
+		return (ERROR_FAILURE);
 	if (pthread_join(observer, NULL))
 		return (ERROR_FAILURE);
 	i = 0;
