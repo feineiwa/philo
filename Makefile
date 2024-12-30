@@ -19,6 +19,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 		@$(CC) $(CFLAGS) $(INC) $(OBJS) -o $(NAME)
+		@cat ./inc/frahenin_ANSI
 		@echo "To lanch:\n\t./philo <nbr_of_philos> <time_to_die> <time_to_eat> <time_to_sleep>\
  [number_of_times_each_philosopher_must_eat]"
 
